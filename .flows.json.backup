@@ -73,7 +73,7 @@
         "y": 100,
         "wires": [
             [
-                "41079240bc14c7fc"
+                "4c4f75f0fb0a221d"
             ]
         ]
     },
@@ -82,18 +82,16 @@
         "type": "function",
         "z": "243b31cf.53e72e",
         "name": "Get Message Service Status",
-        "func": "flow.set(\"status\", msg.payload.serviceStatus);\nnode.log(\"status=\"+msg.payload.serviceStatus);\nreturn msg;",
+        "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 120,
+        "x": 1140,
+        "y": 100,
         "wires": [
-            [
-                "2d4f76ad12ca974e"
-            ]
+            []
         ]
     },
     {
@@ -101,32 +99,22 @@
         "type": "switch",
         "z": "243b31cf.53e72e",
         "name": "if healthy",
-        "property": "status",
-        "propertyType": "flow",
+        "property": "payload",
+        "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "OK",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "FAILED",
+                "v": "",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
+        "outputs": 1,
         "x": 440,
         "y": 300,
         "wires": [
-            [
-                "a2ef5d7c66834bdd"
-            ],
-            [
-                "456b32d9199096e0"
-            ]
+            []
         ]
     },
     {
@@ -134,7 +122,7 @@
         "type": "function",
         "z": "243b31cf.53e72e",
         "name": "set email auth header and payload",
-        "func": "msg.headers = {\n    \"Authorization\" : \"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSJ9.eyJhdWQiOiI5MDdhMTVkYy01MTM2LTQ4ZjgtOGE4Yi0zYjdjOWFjNTZkMzYiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vY2U2ZWMwMDAtMWNmYS00OWMyLWEyNGYtN2RiNjNjOGE5YTUyL3YyLjAiLCJpYXQiOjE2NjE4NjM1NzEsIm5iZiI6MTY2MTg2MzU3MSwiZXhwIjoxNjYxODY3NDcxLCJhaW8iOiJFMlpnWU5DLzkyVFhJZmRBSGFYUGNSZGY5MXlaQkFBPSIsImF6cCI6ImZhMDhlOTU1LWYxZjEtNDdkNi05MzFmLTJkMWQ4NGVhZTY3NiIsImF6cGFjciI6IjEiLCJvaWQiOiIyOTY4YThjYi02YTkyLTRlYjEtYjgyMS0xMjA2Nzk2MWMyZjIiLCJyaCI6IjAuQVFNQUFNQnV6dm9jd2ttaVQzMjJQSXFhVXR3VmVwQTJVZmhJaW9zN2ZKckZiVFlEQUFBLiIsInN1YiI6IjI5NjhhOGNiLTZhOTItNGViMS1iODIxLTEyMDY3OTYxYzJmMiIsInRpZCI6ImNlNmVjMDAwLTFjZmEtNDljMi1hMjRmLTdkYjYzYzhhOWE1MiIsInV0aSI6Imo4WFJpUEVNLVU2ZHdoU0dEaU1xQUEiLCJ2ZXIiOiIyLjAifQ.HlVY69sktaVeajD8K0v07w1gw-1SXwp6ZhSe0fXm8kaPGfNvAuSqqmxX68-x2ihtkkj_o_p8vwRjF7zE7aOO9PUFM6PywQURdUSHATcoT3h1ltSV1qduh8u9TAOodMeJ0PgNO5RgoMscLuRe4osaAxYRIz44ib0jVvv6dzwr9lp25XaJZyW7xVzgVfpG23YcvgJWK-d6Cegdl_2UW56haI-WVYLdb2-LNlxDow1Wt7txk9_t7XZV3wg-hqMw-vU5h4bsW2ccxPY2T2XwbTNU7WEDp1hkju8WKTXLTu_LkPr4yMRMJP1rfK-MICJk1IzHwl68TmBj_W4TYI7G05bjVQ\"\n}\nmsg.payload = {\n    \"recipients\": \"nidhi.sinha@teck.com\",\n    \"subject\": \"Subject of email\",\n    \"content\": \"Content of email\"\n}\nreturn msg;",
+        "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -143,9 +131,7 @@
         "x": 760,
         "y": 260,
         "wires": [
-            [
-                "ad0bb1529657116b"
-            ]
+            []
         ]
     },
     {
@@ -170,13 +156,11 @@
         "type": "http request",
         "z": "243b31cf.53e72e",
         "name": "",
-        "method": "POST",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://api.galileo.teck.com/platform/message-service/api/v1/emails",
-        "tls": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
         "persist": false,
-        "proxy": "",
         "insecureHTTPParser": false,
         "authType": "",
         "senderr": false,
@@ -184,9 +168,7 @@
         "x": 1050,
         "y": 260,
         "wires": [
-            [
-                "14e12a97e3ace6f5"
-            ]
+            []
         ]
     },
     {
@@ -206,10 +188,35 @@
         "wires": []
     },
     {
-        "id": "a06b9686b3fc2204",
+        "id": "4c4f75f0fb0a221d",
+        "type": "debug",
+        "z": "243b31cf.53e72e",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e62681d635acb6b4",
         "type": "inject",
         "z": "243b31cf.53e72e",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -217,67 +224,16 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 720,
+        "x": 160,
+        "y": 660,
         "wires": [
             [
-                "598da6c1501550f0"
+                "7384d405a30999ed"
             ]
         ]
     },
     {
-        "id": "598da6c1501550f0",
-        "type": "change",
-        "z": "243b31cf.53e72e",
-        "name": "set auth header for health API",
-        "rules": [
-            {
-                "t": "set",
-                "p": "headers['Teck-Health-Auth']",
-                "pt": "msg",
-                "to": "a456d073-bd3b-4e1d-b5bb-52fbe82816c2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 390,
-        "y": 600,
-        "wires": [
-            [
-                "8f56cbbe92997e3b"
-            ]
-        ]
-    },
-    {
-        "id": "8f56cbbe92997e3b",
-        "type": "http request",
-        "z": "243b31cf.53e72e",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://api.galileo.teck.com/platform/message-service/health",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 650,
-        "y": 600,
-        "wires": [
-            [
-                "4af8035909f129d1"
-            ]
-        ]
-    },
-    {
-        "id": "4af8035909f129d1",
+        "id": "7384d405a30999ed",
         "type": "debug",
         "z": "243b31cf.53e72e",
         "name": "debug 4",
@@ -285,12 +241,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 860,
-        "y": 620,
+        "x": 340,
+        "y": 660,
         "wires": []
     }
 ]
